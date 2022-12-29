@@ -2,17 +2,19 @@
 #include<stdlib.h>
 #include<unistd.h>
 #include<string.h>
+#include "splashscreen.h"
 #define EXIT 4
 
-void logo(void);
 char login(char username[256], char password[50]);
 void menu(void);
 void welcome_screen(void);
+void new_file(void);
 
 int main(void)
 {
     char login_name[256], pass[50];
     int login_func, prompt;
+    char amogus;
 
     logo();
     sleep(2);
@@ -42,43 +44,18 @@ int main(void)
         menu();
         printf("> ");
         scanf("%d", &prompt);
+        amogus = getchar();
+        if(prompt == 1)
+        {
+            new_file();
+            menu();
+            printf("> ");
+            scanf("%d", &prompt);
+            amogus = getchar();
+        }
     }
 
     return 0;
-}
-
-void logo (void)
-{
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-   printf("#########################################################################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-                             printf("                        ######################\n");
-    printf("PLEASE WAIT. LOADING.........");
 }
 
 char login(char username[256], char password[50])
@@ -90,7 +67,7 @@ char login(char username[256], char password[50])
     while((strcmp(default_login, username)) && (strcmp(default_password, password)))
     {
         verify = 1;
-        return verify;
+        return verify;  
     }
     while((strcmp(username, default_login)) && (strcmp(password, default_password)))
     {
@@ -119,4 +96,29 @@ void welcome_screen(void)
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     printf("\n                          =                                         WELCOME!!                              =");
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+}
+
+void new_file(void)
+{
+    char new_file[128];
+    char name[256], address[256], phone_number[20];
+
+    printf("Enter file name: ");
+    gets(new_file);
+    strcat(new_file, ".txt");
+    FILE *file;
+    file = fopen(new_file, "a");
+
+    printf("Enter patient's name: ");
+    gets(name);
+    fprintf(file, "Patient's name: %s\n", name);
+    printf("Enter address: ");
+    gets(address);
+    fprintf(file, "Address: %s\n", address);
+
+    printf("Enter phone number: ");
+    gets(phone_number);
+    fprintf(file, "Phone number: %s\n", phone_number);
+
+    fclose(file);
 }
