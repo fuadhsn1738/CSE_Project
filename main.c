@@ -3,9 +3,9 @@
 #include<unistd.h>
 #include<string.h>
 #include "splashscreen.h"
+#include "login.h"
 #define EXIT 4
 
-char login(char username[256], char password[50]);
 void menu(void);
 void welcome_screen(void);
 void new_file(void);
@@ -14,7 +14,7 @@ int main(void)
 {
     char login_name[256], pass[50];
     int login_func, prompt;
-    char amogus;
+    char amogus;  // to cancel out \n
 
     logo();
     sleep(2);
@@ -35,53 +35,33 @@ int main(void)
         gets(pass);
         login_func = login(login_name, pass);
     }
+
     if (login_func == 0)
     {
         printf("Success!\nPLEASE WAIT. LOADING.........");
         sleep(1);
         system("cls");
+
         welcome_screen();
         menu();
         printf("> ");
         scanf("%d", &prompt);
-        amogus = getchar();
+        scanf("%c", &amogus);
+
         if(prompt == 1)
         {
             new_file();
             menu();
             printf("> ");
             scanf("%d", &prompt);
-            amogus = getchar();
+            scanf("%c", &amogus);
         }
     }
 
     return 0;
 }
 
-char login(char username[256], char password[50])
-{
-    char default_login[] = "hospital";
-    char default_password[] = "hospital123";
-    int verify;
-
-    while((strcmp(default_login, username)) && (strcmp(default_password, password)))
-    {
-        verify = 1;
-        return verify;  
-    }
-    while((strcmp(username, default_login)) && (strcmp(password, default_password)))
-    {
-        verify = 1;
-        return verify;
-    }
-    if((!strcmp(default_login, username)) && (!strcmp(default_password, password)))
-    {
-        verify = 0;
-    }
-
-     return verify;
-}
-
+/*function for the menu*/
 void menu(void)
 {
     printf("\n\n1. Create new patient file\n");
@@ -91,6 +71,7 @@ void menu(void)
     printf("================================\n");
 }
 
+/*function for the welcome screen*/
 void welcome_screen(void)
 {
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -98,6 +79,7 @@ void welcome_screen(void)
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 }
 
+/*function for creating a new patient file*/
 void new_file(void)
 {
     char new_file[128];
@@ -105,7 +87,9 @@ void new_file(void)
 
     printf("Enter file name: ");
     gets(new_file);
-    strcat(new_file, ".txt");
+
+    strcat(new_file, ".txt"); // concatonates the custom file name with .txt
+
     FILE *file;
     file = fopen(new_file, "a");
 
