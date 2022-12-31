@@ -5,7 +5,6 @@
 
 char login(char username[256], char password[50])
 {
-    char * user_login, user_password;
     int verify;
     FILE *inp = fopen("user info.txt", "r");
     char user_info[255];

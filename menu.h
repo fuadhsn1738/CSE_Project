@@ -20,6 +20,7 @@ void new_file(void)
     FILE *file;
     file = fopen(directory, "a");
 
+    /*info to be stored in the user's custom text file*/
     printf("Enter patient's name: ");
     gets(name);
     fprintf(file, "Patient's name: %s\n", name);
@@ -67,11 +68,56 @@ void new_file(void)
     fprintf(file, "STATUS: ADMITTED");
 
     fclose(file);
+    printf("File created successfully!");
 }
 
 /*function for searchin a patient file*/
 void search_file(void)
 {
-    system("cd Patient_files");
-    system("dir /b");
+    char file_search[128];
+    char directory[] = "D://Courses//CSE115+L//CSE_Project//Patient_files//";
+    char buffer[255];
+
+    printf("Enter file name: ");
+    gets(file_search);
+    printf("\n\n%s's record\n======================\n", file_search);
+
+    strcat(file_search, ".txt"); // concatenates the custom file name with .txt
+    strcat(directory, file_search);  // concatenates the custom file with directory
+
+    FILE *read_file;
+    read_file = fopen(directory, "r");
+
+    /*loops reading each line and printing each one till the end of file*/
+    while(!feof(read_file))
+    {
+        fgets(buffer, 255, read_file);
+        puts(buffer);
+    }
+
+    fclose(read_file);
+
+}
+
+/*function to discharge a patient*/
+void discharge_patient(void)
+{
+    char discharge[128];
+    char directory[] = "D://Courses//CSE115+L//CSE_Project//Patient_files//";
+
+    printf("Enter file name: ");
+    gets(discharge);
+
+    strcat(discharge, ".txt"); 
+    strcat(directory, discharge);
+
+    FILE *discharge_confirm;
+    discharge_confirm = fopen(directory, "r+");
+
+    if(feof(discharge_confirm))
+    {
+        fprintf(discharge_confirm, "STATUS: DISCHARGED");
+    }
+
+    fclose(discharge_confirm);
 }
