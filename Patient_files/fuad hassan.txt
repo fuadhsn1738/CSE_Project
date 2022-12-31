@@ -1,0 +1,12 @@
+Patient's name: Fuad Hassan
+Patient's ID: 1738
+Gender: Male
+Blood group: B+
+Father's name: Faisal Hassan
+Mother's name: Neepa Parvin
+Disease: Cancer
+Total charge: 5000
+Phone number: 01757721465
+Address: Dhaka
+Admission date: 31/12/2022
+STATUS: ADMITTED

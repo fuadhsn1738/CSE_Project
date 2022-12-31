@@ -1,6 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 #ifndef LOGIN_H_INCLUDED
 #define LOGIN_H_INCLUDED
 #endif

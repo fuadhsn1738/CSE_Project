@@ -4,11 +4,11 @@
 #include<string.h>
 #include "splashscreen.h"
 #include "login.h"
+#include "menu.h"
 #define EXIT 4
 
 void menu(void);
 void welcome_screen(void);
-void new_file(void);
 
 int main(void)
 {
@@ -42,6 +42,7 @@ int main(void)
         sleep(1);
         system("cls");
 
+
         welcome_screen();
         menu();
         printf("> ");
@@ -50,7 +51,17 @@ int main(void)
 
         if(prompt == 1)
         {
+            printf("OPTION SELECTED: 1\n\n");
             new_file();
+            system("cls");
+            menu();
+            printf("> ");
+            scanf("%d", &prompt);
+            scanf("%c", &amogus);
+        }
+        if(prompt == 2)
+        {
+            search_file();
             menu();
             printf("> ");
             scanf("%d", &prompt);
@@ -77,32 +88,4 @@ void welcome_screen(void)
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
     printf("\n                          =                                         WELCOME!!                              =");
     printf("\n                          =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-}
-
-/*function for creating a new patient file*/
-void new_file(void)
-{
-    char new_file[128];
-    char name[256], address[256], phone_number[20];
-
-    printf("Enter file name: ");
-    gets(new_file);
-
-    strcat(new_file, ".txt"); // concatonates the custom file name with .txt
-
-    FILE *file;
-    file = fopen(new_file, "a");
-
-    printf("Enter patient's name: ");
-    gets(name);
-    fprintf(file, "Patient's name: %s\n", name);
-    printf("Enter address: ");
-    gets(address);
-    fprintf(file, "Address: %s\n", address);
-
-    printf("Enter phone number: ");
-    gets(phone_number);
-    fprintf(file, "Phone number: %s\n", phone_number);
-
-    fclose(file);
 }
