@@ -51,7 +51,7 @@ void new_file(void)
 
     printf("Total hospital bill: ");
     gets(total_amount);
-    fprintf(file, "Total charge: %s\n", total_amount);
+    fprintf(file, "Total charge: TK.%s\n", total_amount);
 
     printf("Enter patient's number: ");
     gets(phone_number);
@@ -65,7 +65,7 @@ void new_file(void)
     gets(admission_date);
     fprintf(file, "Admission date: %s\n", admission_date);
 
-    fprintf(file, "STATUS: ADMITTED");
+    fprintf(file, "\n");
 
     fclose(file);
     printf("File created successfully!");
@@ -104,6 +104,7 @@ void discharge_patient(void)
 {
     char discharge[128];
     char directory[] = "D://Courses//CSE115+L//CSE_Project//Patient_files//";
+    char temp[255];
 
     printf("Enter file name: ");
     gets(discharge);
@@ -112,12 +113,15 @@ void discharge_patient(void)
     strcat(directory, discharge);
 
     FILE *discharge_confirm;
-    discharge_confirm = fopen(directory, "r+");
+    discharge_confirm = fopen(directory, "a+");
 
-    if(feof(discharge_confirm))
+    while(!feof(discharge_confirm))
     {
-        fprintf(discharge_confirm, "STATUS: DISCHARGED");
+        fgets(temp, 255, discharge_confirm);
     }
+
+    strcpy(temp, "DISCHARGED");
+    fprintf(discharge_confirm, "STATUS: %s\n", temp);
 
     fclose(discharge_confirm);
 }
