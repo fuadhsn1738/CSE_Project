@@ -94,7 +94,8 @@ int main(void)
         }
         if(prompt == EXIT)
         {
-            printf("\nProgram terminated\n");
+            system("cls");
+            printf("Program terminated\n");
             printf("Thank you!");
         }
     }

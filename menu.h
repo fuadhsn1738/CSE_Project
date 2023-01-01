@@ -20,7 +20,7 @@ void new_file(void)
     FILE *file;
     file = fopen(directory, "a");
 
-    /*info to be stored in the user's custom text file*/
+    /*from line 23-66, the user is prompted to write their info and is read in using the gets() function and printed onto the custom file*/
     printf("Enter patient's name: ");
     gets(name);
     fprintf(file, "Patient's name: %s\n", name);
@@ -65,8 +65,6 @@ void new_file(void)
     gets(admission_date);
     fprintf(file, "Admission date: %s\n", admission_date);
 
-    fprintf(file, "\n");
-
     fclose(file);
     printf("File created successfully!");
 }
@@ -88,7 +86,7 @@ void search_file(void)
     FILE *read_file;
     read_file = fopen(directory, "r");
 
-    /*loops reading each line and printing each one till the end of file*/
+    /*the WHILE loop prints each line into the buffer variable and puts() it onto the display till the end of file is reached*/
     while(!feof(read_file))
     {
         fgets(buffer, 255, read_file);
@@ -121,7 +119,7 @@ void discharge_patient(void)
     }
 
     strcpy(temp, "DISCHARGED");
-    fprintf(discharge_confirm, "STATUS: %s\n", temp);
+    fprintf(discharge_confirm, "\nSTATUS: %s\n", temp);
 
     fclose(discharge_confirm);
 }
