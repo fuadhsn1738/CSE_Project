@@ -1,5 +1,5 @@
 # CSE_Project
- Hospital management system
+ Project Name: Hospital management system
 
 This is a project about managing a patient's file in a hospital.
 users are required to login and give a password in order to reach the menu.
