@@ -1,0 +1,11 @@
+Patient's name: Fuad Hassan
+Patient's ID: 2234
+Gender: Male
+Blood group: B+
+Father's name: Faisal Hassan
+Mother's name: Neepa Parvin
+Disease: Common Cold
+Total charge: TK.1100
+Phone number: 01757721465
+Address: Dhaka, Bangladesh
+Admission date: 04/01/2023
